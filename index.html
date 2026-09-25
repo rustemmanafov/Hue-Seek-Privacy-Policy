@@ -20,9 +20,9 @@
 <body>
 
 <h1>Hue &amp; Seek — Privacy Policy</h1>
-<p class="sub">Last updated: 29 July 2026</p>
+<p class="sub">Last updated: 25 September 2026</p>
 
-<p>Hue &amp; Seek is a multiplayer hide-and-seek game for iOS. This policy explains
+<p>Hue &amp; Seek is a multiplayer hide-and-seek game for iOS and Android. This policy explains
 exactly what the app handles. We do not sell your data, we do not use it for
 advertising, and we do not track you across other apps or websites.</p>
 
@@ -33,46 +33,82 @@ advertising, and we do not track you across other apps or websites.</p>
     <td>Anonymous player ID</td>
     <td>Required to join a multiplayer room and to keep a match session alive.</td>
     <td>Unity Gaming Services (Authentication, Lobby, Relay). Not linked to your
-        name, email, or Apple ID.</td>
+        name, email, Apple ID, or Google account.</td>
   </tr>
   <tr>
     <td>IP address</td>
     <td>Technically required to route match traffic between players.</td>
-    <td>Processed transiently by Unity Relay to establish the connection.
-        Not stored by us.</td>
+    <td>Processed by Unity Relay and Lobby to establish the connection; they may
+        derive an approximate region from it to pick the nearest server, and keep
+        technical diagnostics needed to run the service. Not stored by us.</td>
   </tr>
   <tr>
     <td>Game progress (rounds played, wins, best camouflage score)</td>
     <td>To show your own statistics.</td>
-    <td>Stored only on your device. If you enable Game Center, your score may be
-        submitted to Apple's leaderboards under your Game Center nickname.</td>
+    <td>Stored only on your device. On iOS, if you enable Game Center, your score
+        may be submitted to Apple's leaderboards under your Game Center nickname.
+        On Android, statistics never leave the device.</td>
   </tr>
 </table>
+
+<h2>Clip capture (iOS only, off by default)</h2>
+<p>The app can record the last few seconds of your own screen so you can share a
+moment from a match. This is <strong>off until you turn it on</strong> in the
+main menu, and iOS shows its own permission prompt the first time it runs.
+The Android version has no clip capture.</p>
+<ul>
+  <li>Recording uses Apple's ReplayKit and only runs during the search phase of a
+      match. The microphone and camera are never enabled.</li>
+  <li>Footage stays in a temporary buffer on your device. Nothing is written to a
+      file, and nothing leaves your device, unless you tap "Share".</li>
+  <li>When you tap "Share", iOS's own share sheet opens and <em>you</em> choose
+      where the video goes. We never receive it and never upload it.</li>
+  <li>Turning the setting off stops the buffer immediately.</li>
+</ul>
 
 <h2>What the app does not collect</h2>
 <ul>
   <li>No name, email address, phone number, or postal address.</li>
-  <li>No contacts, photos, microphone, or camera access.</li>
-  <li>No location data.</li>
+  <li>No contacts, microphone, or camera access.</li>
+  <li>The app never reads your photo library. If you pick "Save Video" in the
+      share sheet, iOS asks your permission once to <em>add</em> that clip to
+      Photos — nothing else is accessed.</li>
+  <li>No screen recordings are ever sent to us — see "Clip capture" above.</li>
+  <li>No precise (GPS) location. The only location-related data is the
+      approximate region described under "IP address" above.</li>
+  <li>On Android the app requests only two permissions: Internet access (to play
+      online) and vibration (haptic feedback). Sharing a room code opens
+      Android's own share menu; the app sees nothing about where you send it.</li>
   <li>No advertising identifiers and no third-party analytics or ad SDKs.</li>
   <li>No in-app chat, so no message content is processed.</li>
 </ul>
 
 <h2>Children</h2>
-<p>The app is suitable for all ages and does not knowingly collect personal
-information from children. Because no account creation or personal data entry
-exists, no child-specific data is gathered.</p>
+<p>Hue &amp; Seek is made for players of all ages, including children. It has no
+ads, no in-app purchases, no chat, and never asks for a name, email address,
+photo, or any other personal detail. It does not use the advertising ID or any
+hardware identifier (such as IMEI or MAC address), and it never requests
+location permission.</p>
+<p>To run online matches, the same limited data described above is processed for
+every player, including children: the anonymous player ID and the approximate
+region Unity Relay and Lobby derive from the IP address to pick the nearest
+server. This data is used only to make multiplayer work — never for advertising,
+profiling, or tracking. Players cannot send messages to each other; other players
+see only your painted character and your in-game actions.</p>
+<p>A parent or guardian can ask us to delete the anonymous player ID at any time
+(see "Contact" below).</p>
 
 <h2>Deleting your data</h2>
 <p>On-device statistics are removed when you delete the app. The anonymous
 player ID is managed by Unity Gaming Services; to request its deletion, contact
-us at the address below and we will forward the request. Game Center scores are
-managed by Apple and can be removed from your Game Center account settings.</p>
+us at the address below and we will forward the request. On iOS, Game Center
+scores are managed by Apple and can be removed from your Game Center account
+settings.</p>
 
 <h2>Third-party services</h2>
 <p>The app uses <strong>Unity Gaming Services</strong> (Authentication, Lobby and
-Relay) to connect players, and optionally <strong>Apple Game Center</strong> for
-leaderboards. Their handling of data is governed by their own policies:</p>
+Relay) to connect players, and on iOS optionally <strong>Apple Game Center</strong>
+for leaderboards. Their handling of data is governed by their own policies:</p>
 <ul>
   <li>Unity privacy policy: <code>unity.com/legal/privacy-policy</code></li>
   <li>Apple privacy policy: <code>apple.com/legal/privacy</code></li>
@@ -83,7 +119,8 @@ leaderboards. Their handling of data is governed by their own policies:</p>
 address with a new date at the top.</p>
 
 <h2>Contact</h2>
-<p>For privacy questions or to request deletion of your data, contact us via
+<p>For privacy questions or to request deletion of your data, email
+<a href="mailto:support@samofy.co.uk">support@samofy.co.uk</a> or visit
 <a href="https://samofy.co.uk">samofy.co.uk</a>.</p>
 
 <footer>Hue &amp; Seek — developed by Rustem Manafov.</footer>
