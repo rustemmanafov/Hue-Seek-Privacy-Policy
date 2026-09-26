@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--
+  Hue & Seek room invite landing page.
+  Static on purpose: no cookies, no analytics, no external fonts or scripts
+  (children's app — Google Play Families / Apple Kids expectations).
+  The room code is read from ?code= in the browser only and is never sent anywhere.
+  Publish: see ../README.md. After publishing, set InviteLink.LandingPageLive = true.
+-->
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Join my Hue &amp; Seek room</title>
+<!-- WhatsApp / Messages link preview (the crawler does not run JavaScript). -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hue &amp; Seek">
+<meta property="og:title" content="Join my Hue &amp; Seek room">
+<meta property="og:description" content="Tap to open the room invite in Hue &amp; Seek.">
+<meta property="og:image" content="https://rustemmanafov.github.io/Hue-Seek-Privacy-Policy/join/icon.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --bg: #12141c;
+    --card: #1c2030;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.68);
+    --accent: #f28c1f;
+    --blue: #2b6bc7;
+    --alt: #434856;
+    --ok: #4fd67a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  main {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    border-radius: 24px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .icon { width: 96px; height: 96px; border-radius: 22px; display: block; margin: 0 auto 14px; }
+  h1 { font-size: 24px; line-height: 1.25; margin: 0 0 18px; }
+  .label { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+  .code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    padding: 12px 8px 12px 16px;
+    margin: 0 0 16px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.35);
+    user-select: all;
+    -webkit-user-select: all;
+  }
+  button, a.btn {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 16px 12px;
+    margin: 0 0 12px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .primary { background: var(--accent); }
+  .secondary { background: var(--blue); }
+  .store { background: var(--alt); font-size: 17px; }
+  .stores { display: flex; gap: 10px; }
+  .stores a.btn { flex: 1; }
+  .hint { color: var(--muted); font-size: 15px; line-height: 1.4; margin: 4px 0 18px; }
+  .small { color: var(--muted); font-size: 14px; margin: 18px 0 10px; }
+  .invalid { color: #ffd59a; font-size: 17px; line-height: 1.4; margin: 0 0 18px; }
+  .copied { background: var(--ok); color: #10321b; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="icon.png" alt="" width="96" height="96">
+  <h1 id="title">Join my Hue &amp; Seek room</h1>
+
+  <div id="valid" hidden>
+    <p class="label" id="codeLabel">Room code</p>
+    <div class="code" id="code"></div>
+    <button type="button" class="primary" id="copy">Copy code</button>
+    <a class="btn secondary" id="open" href="#" hidden>Open in Hue &amp; Seek</a>
+    <p class="hint" id="how">In the game: tap Paste, or type the code under "Join with room code".</p>
+  </div>
+
+  <p class="invalid" id="invalid" hidden>This invite link has no valid room code. Ask your friend to share it again.</p>
+
+  <p class="small" id="noApp">Don't have the game yet?</p>
+  <div class="stores">
+    <a class="btn store" id="appStore" href="https://apps.apple.com/app/id6796044112" rel="noreferrer">App Store</a>
+    <a class="btn store" id="play" href="https://play.google.com/store/apps/details?id=com.samofylimited.hueandseek" rel="noreferrer">Google Play</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var PLAY_URL = "https://play.google.com/store/apps/details?id=com.samofylimited.hueandseek";
+  var PACKAGE = "com.samofylimited.hueandseek";
+
+  var TEXT = {
+    en: {
+      title: "Join my Hue & Seek room",
+      codeLabel: "Room code",
+      copy: "Copy code",
+      copied: "Copied!",
+      open: "Open in Hue & Seek",
+      how: "In the game: tap Paste, or type the code under “Join with room code”.",
+      invalid: "This invite link has no valid room code. Ask your friend to share it again.",
+      noApp: "Don't have the game yet?"
+    },
+    tr: {
+      title: "Hue & Seek odama katıl",
+      codeLabel: "Oda kodu",
+      copy: "Kodu kopyala",
+      copied: "Kopyalandı!",
+      open: "Hue & Seek'te aç",
+      how: "Oyunda: Yapıştır'a dokun ya da kodu “Oda kodu ile katıl” altına yaz.",
+      invalid: "Bu davet linkinde geçerli bir oda kodu yok. Arkadaşından tekrar paylaşmasını iste.",
+      noApp: "Oyun henüz sende yok mu?"
+    },
+    az: {
+      title: "Hue & Seek otağıma qoşul",
+      codeLabel: "Otaq kodu",
+      copy: "Kodu kopyala",
+      copied: "Kopyalandı!",
+      open: "Hue & Seek-də aç",
+      how: "Oyunda: Yapışdır-a toxun və ya kodu “Otaq kodu ilə qoşul” altına yaz.",
+      invalid: "Bu dəvət linkində düzgün otaq kodu yoxdur. Dostundan yenidən paylaşmasını xahiş et.",
+      noApp: "Oyun hələ səndə yoxdur?"
+    }
+  };
+
+  function pickLang() {
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+    for (var i = 0; i < list.length; i++) {
+      var two = String(list[i] || "").slice(0, 2).toLowerCase();
+      if (TEXT[two]) return two;
+    }
+    return "en";
+  }
+
+  // Same rule as the app (InviteCode.IsValid): exactly 6 ASCII letters/digits.
+  function readCode() {
+    var m = /[?&]code=([^&#]*)/i.exec(window.location.search);
+    if (!m) return null;
+    var raw;
+    try { raw = decodeURIComponent(m[1].replace(/\+/g, " ")); } catch (e) { return null; }
+    raw = raw.trim();
+    return /^[A-Z0-9]{6}$/i.test(raw) ? raw.toUpperCase() : null;
+  }
+
+  var ua = navigator.userAgent || "";
+  var isAndroid = /android/i.test(ua);
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  var lang = pickLang();
+  var t = TEXT[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+
+  function set(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+  set("title", t.title);
+  set("codeLabel", t.codeLabel);
+  set("copy", t.copy);
+  set("open", t.open);
+  set("how", t.how);
+  set("invalid", t.invalid);
+  set("noApp", t.noApp);
+
+  // Show the store for this phone first (both stay visible).
+  if (isAndroid) {
+    var stores = document.querySelector(".stores");
+    stores.insertBefore(document.getElementById("play"), stores.firstChild);
+  }
+
+  var code = readCode();
+  if (!code) {
+    document.getElementById("invalid").hidden = false;
+    return;
+  }
+
+  document.getElementById("valid").hidden = false;
+  set("code", code);
+
+  // "Open in app": the custom scheme is the only way from a web page into the
+  // app until universal links / App Links exist (Phase 2). No automatic
+  // redirect — on iOS Safari shows an "invalid address" alert when the app is
+  // not installed. On desktop there is no app, so the button stays hidden.
+  var open = document.getElementById("open");
+  if (isIOS) {
+    open.href = "hueseek://join?code=" + code;
+    open.hidden = false;
+  } else if (isAndroid) {
+    open.href = "intent://join?code=" + code +
+      "#Intent;scheme=hueseek;package=" + PACKAGE +
+      ";S.browser_fallback_url=" + encodeURIComponent(PLAY_URL) + ";end";
+    open.hidden = false;
+  }
+
+  // Copies ONLY the code, so pasting into the app's 6-character field works.
+  var copyBtn = document.getElementById("copy");
+  function flashCopied() {
+    copyBtn.textContent = t.copied;
+    copyBtn.classList.add("copied");
+    setTimeout(function () {
+      copyBtn.textContent = t.copy;
+      copyBtn.classList.remove("copied");
+    }, 1500);
+  }
+  function fallbackCopy() {
+    var ta = document.createElement("textarea");
+    ta.value = code;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, code.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  copyBtn.addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(flashCopied, function () {
+        if (fallbackCopy()) flashCopied();
+      });
+    } else if (fallbackCopy()) {
+      flashCopied();
+    }
+  });
+})();
+</script>
+</body>
+</html>
