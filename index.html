@@ -20,11 +20,13 @@
 <body>
 
 <h1>Hue &amp; Seek — Privacy Policy</h1>
-<p class="sub">Last updated: 25 September 2026</p>
+<p class="sub">Last updated: 27 September 2026</p>
 
-<p>Hue &amp; Seek is a multiplayer hide-and-seek game for iOS and Android. This policy explains
-exactly what the app handles. We do not sell your data, we do not use it for
-advertising, and we do not track you across other apps or websites.</p>
+<p>Hue &amp; Seek is a multiplayer hide-and-seek game for iOS and Android. It is
+operated by <strong>Samofy Limited</strong> ("we", "us"), which is responsible for
+the data described in this policy. This policy explains exactly what the app
+handles. We do not sell your data, we do not use it for advertising, and we do
+not track you across other apps or websites.</p>
 
 <h2>What the app collects</h2>
 <table>
@@ -32,22 +34,43 @@ advertising, and we do not track you across other apps or websites.</p>
   <tr>
     <td>Anonymous player ID</td>
     <td>Required to join a multiplayer room and to keep a match session alive.</td>
-    <td>Unity Gaming Services (Authentication, Lobby, Relay). Not linked to your
-        name, email, Apple ID, or Google account.</td>
+    <td>Unity Gaming Services (Authentication, Lobby, Relay), provided by Unity
+        Technologies. Not linked to your name, email, Apple ID, or Google account.
+        Unity Authentication keeps the ID for as long as it is needed to provide
+        online play, or until you delete it (see "Deleting your data" below), and
+        then deletes it according to Unity's retention schedule. It is only created
+        when you first play online; Solo matches do not use it.</td>
   </tr>
   <tr>
     <td>IP address</td>
     <td>Technically required to route match traffic between players.</td>
     <td>Processed by Unity Relay and Lobby to establish the connection; they may
-        derive an approximate region from it to pick the nearest server, and keep
-        technical diagnostics needed to run the service. Not stored by us.</td>
+        derive an approximate region from it to pick the nearest server. Unity
+        Relay keeps the IP address and player ID for 30 days. Unity Lobby does not
+        store the IP address; the player ID in its logs is kept for up to 30 days.
+        Not stored by us.</td>
   </tr>
   <tr>
-    <td>Game progress (rounds played, wins, best camouflage score)</td>
+    <td>Game progress (rounds played, wins, catches, survived hides, win streaks, best camouflage score)</td>
     <td>To show your own statistics.</td>
     <td>Stored only on your device. On iOS, if you enable Game Center, your score
         may be submitted to Apple's leaderboards under your Game Center nickname.
         On Android, statistics never leave the device.</td>
+  </tr>
+  <tr>
+    <td>Anonymous usage statistics</td>
+    <td>To understand how the game is played so we can improve it: how many
+        people play each day, how long sessions last, whether players come back,
+        and which maps and modes are played (for example "match on map X ended,
+        hunters won").</td>
+    <td>Google Analytics for Firebase, provided by Google. It uses a random
+        app-instance ID created on your device (not your name, email, Apple ID,
+        Google account, or advertising ID), basic device information (model, OS
+        version, language, app version) and an approximate country/region
+        derived from the IP address. Advertising features, ad personalisation
+        and the advertising ID are switched off, and the data is never used for
+        advertising. Google keeps detailed event data for a limited time and
+        then only in aggregated reports.</td>
   </tr>
 </table>
 
@@ -66,6 +89,17 @@ The Android version has no clip capture.</p>
   <li>Turning the setting off stops the buffer immediately.</li>
 </ul>
 
+<h2>Room invites</h2>
+<ul>
+  <li>When you tap "Invite Friends", your phone's own share sheet opens and
+      <em>you</em> choose where the 6-character room code goes. We never receive it.</li>
+  <li>"Copy Code" puts only the room code on your clipboard. The app reads the
+      clipboard only when you tap "Paste", to find a room code in it.</li>
+  <li>An invite link opens a simple page (on this website) that shows the code and
+      a button to open the game. The page has no cookies, no analytics and no
+      trackers; the code stays in your browser.</li>
+</ul>
+
 <h2>What the app does not collect</h2>
 <ul>
   <li>No name, email address, phone number, or postal address.</li>
@@ -76,10 +110,18 @@ The Android version has no clip capture.</p>
   <li>No screen recordings are ever sent to us — see "Clip capture" above.</li>
   <li>No precise (GPS) location. The only location-related data is the
       approximate region described under "IP address" above.</li>
-  <li>On Android the app requests only two permissions: Internet access (to play
-      online) and vibration (haptic feedback). Sharing a room code opens
+  <li>On Android the app requests only these permissions, none of which shows a
+      prompt: Internet access (to play online and send the anonymous usage
+      statistics), network state and wake lock (used by the statistics library
+      to send data when a connection is available), vibration (haptic feedback),
+      and Google Play's install-referrer service (tells the statistics which
+      store page the app was installed from). The advertising-ID and
+      ad-services permissions are removed from the app. Sharing a room code opens
       Android's own share menu; the app sees nothing about where you send it.</li>
-  <li>No advertising identifiers and no third-party analytics or ad SDKs.</li>
+  <li>No advertising identifiers and no ad or crash-reporting SDKs. The only
+      analytics is the anonymous usage statistics described above, with Google's
+      advertising features switched off. Unity's own engine diagnostics, crash
+      reporting and analytics features are switched off in the app.</li>
   <li>No in-app chat, so no message content is processed.</li>
 </ul>
 
@@ -95,37 +137,57 @@ region Unity Relay and Lobby derive from the IP address to pick the nearest
 server. This data is used only to make multiplayer work — never for advertising,
 profiling, or tracking. Players cannot send messages to each other; other players
 see only your painted character and your in-game actions.</p>
+<p>The anonymous usage statistics are the same for every player, including
+children: no personal details, no advertising ID, advertising features off,
+and nothing is shared for advertising or used to build a profile of a child.</p>
 <p>A parent or guardian can ask us to delete the anonymous player ID at any time
 (see "Contact" below).</p>
 
 <h2 id="delete-data">Deleting your data (Hue &amp; Seek)</h2>
 <p><strong>In the app (instant):</strong></p>
 <ol>
-  <li>Open Hue &amp; Seek and stay on the main menu.</li>
+  <li>Open Hue &amp; Seek and stay on the main menu (scroll to the bottom of the
+      menu if needed).</li>
   <li>Tap <strong>Delete My Data</strong>, then tap it again within 4 seconds to confirm.</li>
 </ol>
-<p>This permanently deletes your anonymous player ID from Unity Gaming Services
-(Authentication) and clears your on-device statistics (rounds played, wins, best
-camouflage score). An internet connection is needed for the first part. Your
-next online match simply starts with a brand-new anonymous ID.</p>
+<p>Your on-device statistics (rounds played, wins, best camouflage score) are
+cleared straight away. If you have played online, your anonymous player ID is
+also permanently deleted from Unity Gaming Services (Authentication); this part
+needs an internet connection. The app-instance ID used for usage statistics is
+reset at the same time, so later statistics can no longer be connected to
+earlier ones. If you are offline, the app still deletes the
+on-device data, keeps only the sign-in token needed to find that same player ID,
+and asks you to connect to the internet and tap <strong>Delete My Data</strong>
+again — the same player ID is then deleted from Unity. Your next online match
+simply starts with a brand-new anonymous ID.</p>
+<p>Solo matches do not connect to Unity Gaming Services at all, so you can also
+avoid any online processing by playing Solo only.</p>
 <p><strong>By email:</strong> write to
 <a href="mailto:support@samofy.co.uk?subject=Hue%20%26%20Seek%20data%20deletion">support@samofy.co.uk</a>
 with the subject "Hue &amp; Seek data deletion". Because the player ID is
 anonymous we cannot look it up for you, so the in-app button is the reliable way;
 we will help if it does not work for you.</p>
-<p><strong>What is kept:</strong> we keep nothing. Technical connection logs that
-Unity Relay and Lobby create while a match is running (including the approximate
-region) are held by Unity under its own retention policy and are not linked to
-you by us. Uninstalling the app also removes all on-device data. On iOS, Game
+<p><strong>What is kept:</strong> we keep nothing. Connection logs that Unity Relay
+and Lobby create while you play online (IP address and anonymous player ID) are
+held by Unity and deleted within 30 days (see the table above). They are linked
+only to the anonymous player ID, never to your name or any account.
+Uninstalling the app also removes all on-device data. On iOS, Game
 Center scores are managed by Apple and can be removed in your Game Center
 account settings.</p>
 
 <h2>Third-party services</h2>
 <p>The app uses <strong>Unity Gaming Services</strong> (Authentication, Lobby and
-Relay) to connect players, and on iOS optionally <strong>Apple Game Center</strong>
-for leaderboards. Their handling of data is governed by their own policies:</p>
+Relay, provided by Unity Technologies) to connect players,
+<strong>Google Analytics for Firebase</strong> (provided by Google) for the anonymous
+usage statistics, and on iOS optionally <strong>Apple Game Center</strong> for
+leaderboards. They receive only the data described
+above and use it solely to provide their services to the app, and they are
+required to provide the same or equal protection of user data as stated in this
+policy. Their own privacy policies also apply:</p>
 <ul>
   <li>Unity privacy policy: <code>unity.com/legal/privacy-policy</code></li>
+  <li>Google privacy policy: <code>policies.google.com/privacy</code>; how
+      Firebase handles data: <code>firebase.google.com/support/privacy</code></li>
   <li>Apple privacy policy: <code>apple.com/legal/privacy</code></li>
 </ul>
 
@@ -134,11 +196,12 @@ for leaderboards. Their handling of data is governed by their own policies:</p>
 address with a new date at the top.</p>
 
 <h2>Contact</h2>
-<p>For privacy questions or to request deletion of your data, email
+<p>Hue &amp; Seek is operated by Samofy Limited. For privacy questions or to
+request deletion of your data, email
 <a href="mailto:support@samofy.co.uk">support@samofy.co.uk</a> or visit
 <a href="https://samofy.co.uk">samofy.co.uk</a>.</p>
 
-<footer>Hue &amp; Seek — developed by Rustem Manafov.</footer>
+<footer>Hue &amp; Seek — operated by Samofy Limited · developed by Rustem Manafov.</footer>
 
 </body>
 </html>
